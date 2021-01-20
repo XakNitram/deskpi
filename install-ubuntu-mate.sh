@@ -33,28 +33,28 @@ sudo chmod 755 /usr/bin/deskpi-config
 sudo chmod 755 /usr/bin/Deskpi-uninstall
 
 # Build Fan Daemon
-echo "[Unit]" > $deskpidaemon
-echo "Description=DeskPi PWM Control Fan Service" >> $deskpidaemon
-echo "After=multi-user.target" >> $deskpidaemon
-echo "[Service]" >> $deskpidaemon
-echo "Type=oneshot" >> $deskpidaemon
-echo "RemainAfterExit=true" >> $deskpidaemon
-echo "ExecStart=sudo /usr/bin/pwmFanControl &" >> $deskpidaemon
-echo "[Install]" >> $deskpidaemon
-echo "WantedBy=multi-user.target" >> $deskpidaemon
+sudo echo "[Unit]" > $deskpidaemon
+sudo echo "Description=DeskPi PWM Control Fan Service" >> $deskpidaemon
+sudo echo "After=multi-user.target" >> $deskpidaemon
+sudo echo "[Service]" >> $deskpidaemon
+sudo echo "Type=oneshot" >> $deskpidaemon
+sudo echo "RemainAfterExit=true" >> $deskpidaemon
+sudo echo "ExecStart=sudo /usr/bin/pwmFanControl &" >> $deskpidaemon
+sudo echo "[Install]" >> $deskpidaemon
+sudo echo "WantedBy=multi-user.target" >> $deskpidaemon
 
 # send signal to MCU before system shuting down.
-echo "[Unit]" > $safeshutdaemon
-echo "Description=DeskPi Safeshutdown Service" >> $safeshutdaemon
-echo "Conflicts=reboot.target" >> $safeshutdaemon
-echo "Before=halt.target shutdown.target poweroff.target" >> $safeshutdaemon
-echo "DefaultDependencies=no" >> $safeshutdaemon
-echo "[Service]" >> $safeshutdaemon
-echo "Type=oneshot" >> $safeshutdaemon
-echo "ExecStart=/usr/bin/sudo /usr/bin/fanStop" >> $safeshutdaemon
-echo "RemainAfterExit=yes" >> $safeshutdaemon
-echo "[Install]" >> $safeshutdaemon
-echo "WantedBy=halt.target shutdown.target poweroff.target" >> $safeshutdaemon
+sudo echo "[Unit]" > $safeshutdaemon
+sudo echo "Description=DeskPi Safeshutdown Service" >> $safeshutdaemon
+sudo echo "Conflicts=reboot.target" >> $safeshutdaemon
+sudo echo "Before=halt.target shutdown.target poweroff.target" >> $safeshutdaemon
+sudo echo "DefaultDependencies=no" >> $safeshutdaemon
+sudo echo "[Service]" >> $safeshutdaemon
+sudo echo "Type=oneshot" >> $safeshutdaemon
+sudo echo "ExecStart=/usr/bin/sudo /usr/bin/fanStop" >> $safeshutdaemon
+sudo echo "RemainAfterExit=yes" >> $safeshutdaemon
+sudo echo "[Install]" >> $safeshutdaemon
+sudo echo "WantedBy=halt.target shutdown.target poweroff.target" >> $safeshutdaemon
 
 log_action_msg "DeskPi Service configuration finished." 
 sudo chown root:root $safeshutdaemon
